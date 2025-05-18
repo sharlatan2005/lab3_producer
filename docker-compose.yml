@@ -1,0 +1,20 @@
+version: '3'
+services:
+  producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: producer
+    env_file:
+      - .env
+    networks:
+      - default
+    ports:
+      - "5000:5000"
+      - "50051:50051"
+networks:
+  default:
+    name: lab_2
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1500
